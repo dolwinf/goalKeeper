@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Axios from "axios";
+import { Link } from "react-router-dom";
 
 function App() {
     const [goal, setGoal] = useState("");
@@ -28,11 +29,17 @@ function App() {
                 <div className="media-body div-space">
                     {goal.goal}{" "}
                     <button
-                        className="btn btn-danger float-right"
+                        className="btn btn-danger float-right btn-space-left-10"
                         onClick={() => handleDelete(goal.id)}
                     >
                         Delete
                     </button>
+                    <Link
+                        to={`/edit/${goal.id}`}
+                        className="btn btn-warning float-right"
+                    >
+                        Update
+                    </Link>
                 </div>
             </div>
         ));

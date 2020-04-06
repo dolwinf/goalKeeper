@@ -36,7 +36,31 @@ class GoalController extends Controller
       return response()->json($goal->with('user')->find($goal->id));
 }
 
+            public function edit($id){
+               
+                $goal = Goals::findOrFail($id);
+                return response()->json([
+                    'goal' => $goal
+                ]);
+            }
+            
+            public function update(Request $request, $id){
+                $data = $request->all();
+                $goal = Goals::findOrFail($id);
+                $goal->update($data);
+                return response()->json($goal->with('user')->find($goal->id));
+            }
+
+            public function fetch($id){
+                
+                $fetchedGoal = Goals::findOrFail($id);
+
+                return response()->json($fetchedGoal);
+            }
+
             public function destroy($id){
+                
                 Goals::findOrFail($id)->delete();
             }
+
 }
