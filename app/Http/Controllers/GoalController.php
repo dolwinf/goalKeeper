@@ -35,4 +35,8 @@ class GoalController extends Controller
       //return with user
       return response()->json($goal->with('user')->find($goal->id));
 }
+
+            public function destroy($id){
+                Goals::findOrFail($id)->delete();
+            }
 }

@@ -65692,6 +65692,7 @@ function App() {
       return goal.id !== id;
     });
     setAllGoals(updatedGoals);
+    axios__WEBPACK_IMPORTED_MODULE_1___default.a["delete"]("/goal/".concat(id));
   };
 
   var displayGoals = function displayGoals() {

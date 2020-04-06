@@ -19,6 +19,7 @@ function App() {
     const handleDelete = (id) => {
         const updatedGoals = allGoals.filter((goal) => goal.id !== id);
         setAllGoals(updatedGoals);
+        Axios.delete(`/goal/${id}`);
     };
 
     const displayGoals = () => {
