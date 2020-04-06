@@ -16,10 +16,23 @@ function App() {
         setGoal(e.target.value);
     };
 
+    const handleDelete = (id) => {
+        const updatedGoals = allGoals.filter((goal) => goal.id !== id);
+        setAllGoals(updatedGoals);
+    };
+
     const displayGoals = () => {
         return allGoals.map((goal) => (
-            <div key={goal.id} className="row-md3 div-space">
-                {goal.goal}
+            <div key={goal.id} className="media">
+                <div className="media-body div-space">
+                    {goal.goal}{" "}
+                    <button
+                        className="btn btn-danger float-right"
+                        onClick={() => handleDelete(goal.id)}
+                    >
+                        Delete
+                    </button>
+                </div>
             </div>
         ));
     };
@@ -27,10 +40,11 @@ function App() {
         e.preventDefault();
 
         Axios.post("/goal", { goal }).then((response) => {
-            setAllGoals(response.data);
+            setAllGoals([response.data, ...allGoals]);
             setGoal("");
         });
     };
+
     return (
         <div className="container">
             <div className="row justify-content-center">

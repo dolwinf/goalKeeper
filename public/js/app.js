@@ -65642,6 +65642,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -65679,12 +65687,26 @@ function App() {
     setGoal(e.target.value);
   };
 
+  var handleDelete = function handleDelete(id) {
+    var updatedGoals = allGoals.filter(function (goal) {
+      return goal.id !== id;
+    });
+    setAllGoals(updatedGoals);
+  };
+
   var displayGoals = function displayGoals() {
     return allGoals.map(function (goal) {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         key: goal.id,
-        className: "row-md3 div-space"
-      }, goal.goal);
+        className: "media"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "media-body div-space"
+      }, goal.goal, " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        className: "btn btn-danger float-right",
+        onClick: function onClick() {
+          return handleDelete(goal.id);
+        }
+      }, "Delete")));
     });
   };
 
@@ -65693,7 +65715,7 @@ function App() {
     axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("/goal", {
       goal: goal
     }).then(function (response) {
-      setAllGoals(response.data);
+      setAllGoals([response.data].concat(_toConsumableArray(allGoals)));
       setGoal("");
     });
   };

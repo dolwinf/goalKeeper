@@ -14,7 +14,7 @@ class GoalController extends Controller
 
     public function index(Request $request, Goals $goal){
         $allGoals = $goal->whereIn('user_id', $request->user())->with('user');
-        $sortedGoals = $allGoals->orderBy('created_at', 'DESC')->take(20)->get();
+        $sortedGoals = $allGoals->orderBy('created_at', 'DESC')->take(10)->get();
         return response()->json([
             'sortedGoals' => $sortedGoals
         ]);
