@@ -19,5 +19,6 @@ Route::get('/', function () {
 
 Auth::routes();
 
+Route::get('/goal', 'GoalController@index');
 Route::post('/goal', 'GoalController@store');
 Route::get('/home', 'HomeController@index')->name('home');

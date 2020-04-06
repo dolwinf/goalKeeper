@@ -1,28 +1,33 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Axios from "axios";
 
 function App() {
     const [goal, setGoal] = useState("");
     const [allGoals, setAllGoals] = useState([]);
 
+    useEffect(() => {
+        Axios.get("/goal").then((response) => {
+            console.log(response.data.sortedGoals);
+            setAllGoals(response.data.sortedGoals);
+        });
+    }, []);
+
     const handleChange = (e) => {
         setGoal(e.target.value);
     };
 
-    // const displayGoals = () => {
-    //     allGoals.map((goal) => (
-    //         <div key={goal.id} className="row-md3">
-    //             {goal.goal}
-    //         </div>
-    //     ));
-    // };
+    const displayGoals = () => {
+        return allGoals.map((goal) => (
+            <div key={goal.id} className="row-md3 div-space">
+                {goal.goal}
+            </div>
+        ));
+    };
     const handleSubmit = (e) => {
         e.preventDefault();
 
         Axios.post("/goal", { goal }).then((response) => {
-            console.log(response);
-            setAllGoals([response, ...allGoals]);
-            console.log(allGoals);
+            setAllGoals(response.data);
             setGoal("");
         });
     };
@@ -49,14 +54,16 @@ function App() {
                                 <div>
                                     <button
                                         type="submit"
-                                        className="btn btn-primary"
+                                        className="btn btn-primary btn-space"
                                     >
                                         Set Goal
                                     </button>
                                 </div>
                             </form>
                             <hr />
-                            {/* {displayGoals()} */}
+                            {allGoals.length > 0
+                                ? displayGoals()
+                                : "Loading..."}
                         </div>
                     </div>
                 </div>

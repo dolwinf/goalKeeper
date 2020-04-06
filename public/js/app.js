@@ -65642,14 +65642,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
-function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
-
-function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
-
-function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
-
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -65676,25 +65668,32 @@ function App() {
       allGoals = _useState4[0],
       setAllGoals = _useState4[1];
 
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
+    axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("/goal").then(function (response) {
+      console.log(response.data.sortedGoals);
+      setAllGoals(response.data.sortedGoals);
+    });
+  }, []);
+
   var handleChange = function handleChange(e) {
     setGoal(e.target.value);
-  }; // const displayGoals = () => {
-  //     allGoals.map((goal) => (
-  //         <div key={goal.id} className="row-md3">
-  //             {goal.goal}
-  //         </div>
-  //     ));
-  // };
+  };
 
+  var displayGoals = function displayGoals() {
+    return allGoals.map(function (goal) {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        key: goal.id,
+        className: "row-md3 div-space"
+      }, goal.goal);
+    });
+  };
 
   var handleSubmit = function handleSubmit(e) {
     e.preventDefault();
     axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("/goal", {
       goal: goal
     }).then(function (response) {
-      console.log(response);
-      setAllGoals([response].concat(_toConsumableArray(allGoals)));
-      console.log(allGoals);
+      setAllGoals(response.data);
       setGoal("");
     });
   };
@@ -65723,8 +65722,8 @@ function App() {
     onChange: handleChange
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
     type: "submit",
-    className: "btn btn-primary"
-  }, "Set Goal"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", null))))));
+    className: "btn btn-primary btn-space"
+  }, "Set Goal"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", null), allGoals.length > 0 ? displayGoals() : "Loading...")))));
 }
 
 /* harmony default export */ __webpack_exports__["default"] = (App);
