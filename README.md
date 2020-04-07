@@ -14,6 +14,6 @@ Users can register, login, create, update and delete goals.
 - Frontend - React
 - Backend - PHP Laravel
 - Database - SQL - Hosted on Heroku
-- Deployed to [Heroku](http://goalkeepercheck.herokuapp.com/).
+- Deployed to Heroku[here](http://goalkeepercheck.herokuapp.com/).
 
 
