@@ -1,4 +1,4 @@
-<p align="center"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQfat6yCnbdRWEl9TMWygT2-BADw9aA-bvTdWLeidhz32aq-zb3&usqp=CAU" width="400"></p>
+<p align="center"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQfat6yCnbdRWEl9TMWygT2-BADw9aA-bvTdWLeidhz32aq-zb3&usqp=CAU" width="200"></p>
 
 
 
