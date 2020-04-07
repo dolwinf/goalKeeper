@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Axios from "axios";
 
-function Button() {
+function Button({ goal }) {
     const [isClicked, setIsClicked] = useState(false);
     const [text, setText] = useState("Kick");
 
@@ -16,12 +16,21 @@ function Button() {
     };
 
     return (
-        <button
-            className="btn btn-success float-right btn-size-20"
-            onClick={handleKick}
-        >
-            <div>{text}</div>
-        </button>
+        <div>
+            <span
+                style={{
+                    textDecorationLine: isClicked ? "line-through" : ""
+                }}
+            >
+                {goal.goal}
+            </span>{" "}
+            <button
+                className="btn btn-success float-right btn-size-20"
+                onClick={handleKick}
+            >
+                <div>{text}</div>
+            </button>
+        </div>
     );
 }
 

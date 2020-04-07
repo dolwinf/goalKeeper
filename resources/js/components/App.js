@@ -1,16 +1,13 @@
 import React, { useState, useEffect } from "react";
 import Axios from "axios";
-import Button from "./Button";
-import { Link } from "react-router-dom";
+import Goal from "./Goal";
 
 function App() {
     const [goal, setGoal] = useState("");
     const [allGoals, setAllGoals] = useState([]);
-    const [isClicked, setIsClicked] = useState(false);
-    const [text, setText] = useState("Kick");
+
     useEffect(() => {
         Axios.get("/goal").then(response => {
-            console.log(response.data.sortedGoals);
             setAllGoals(response.data.sortedGoals);
         });
     }, []);
@@ -27,24 +24,7 @@ function App() {
 
     const displayGoals = () => {
         return allGoals.map(goal => (
-            <div key={goal.id} className="media">
-                <div className="media-body div-space">
-                    {goal.goal}{" "}
-                    <button
-                        className="btn btn-danger float-right btn-space-left-10"
-                        onClick={() => handleDelete(goal.id)}
-                    >
-                        Delete
-                    </button>
-                    <Link
-                        to={`/edit/${goal.id}`}
-                        className="btn btn-warning float-right btn-space-left-10"
-                    >
-                        Update
-                    </Link>
-                    <Button />
-                </div>
-            </div>
+            <Goal key={goal.id} goal={goal} handleDelete={handleDelete} />
         ));
     };
     const handleSubmit = e => {
