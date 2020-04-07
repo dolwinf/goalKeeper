@@ -10,7 +10,7 @@ The main goal behind the application is to demonstrate working knowledge of PHP 
 
 Users can register, login, create, update and delete goals.
 
-##Feature/s currently being worked on:
+## Feature/s currently being worked on:
 - Allow users to follow their friends/other users to see the progress of their goals.
 - Be able to send invitations to other users to follow them.
 
