@@ -69775,7 +69775,7 @@ function App() {
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
     type: "submit",
     className: "btn btn-primary btn-space"
-  }, "Set Goal"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", null), allGoals.length > 0 ? displayGoals() : "Loading...")))));
+  }, "Set Goal"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", null), displayGoals())))));
 }
 
 /* harmony default export */ __webpack_exports__["default"] = (App);

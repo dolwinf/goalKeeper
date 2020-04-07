@@ -7,24 +7,24 @@ function App() {
     const [allGoals, setAllGoals] = useState([]);
 
     useEffect(() => {
-        Axios.get("/goal").then((response) => {
+        Axios.get("/goal").then(response => {
             console.log(response.data.sortedGoals);
             setAllGoals(response.data.sortedGoals);
         });
     }, []);
 
-    const handleChange = (e) => {
+    const handleChange = e => {
         setGoal(e.target.value);
     };
 
-    const handleDelete = (id) => {
-        const updatedGoals = allGoals.filter((goal) => goal.id !== id);
+    const handleDelete = id => {
+        const updatedGoals = allGoals.filter(goal => goal.id !== id);
         setAllGoals(updatedGoals);
         Axios.delete(`/goal/${id}`);
     };
 
     const displayGoals = () => {
-        return allGoals.map((goal) => (
+        return allGoals.map(goal => (
             <div key={goal.id} className="media">
                 <div className="media-body div-space">
                     {goal.goal}{" "}
@@ -44,10 +44,10 @@ function App() {
             </div>
         ));
     };
-    const handleSubmit = (e) => {
+    const handleSubmit = e => {
         e.preventDefault();
 
-        Axios.post("/goal", { goal }).then((response) => {
+        Axios.post("/goal", { goal }).then(response => {
             setAllGoals([response.data, ...allGoals]);
             setGoal("");
         });
@@ -83,9 +83,7 @@ function App() {
                                 </div>
                             </form>
                             <hr />
-                            {allGoals.length > 0
-                                ? displayGoals()
-                                : "Loading..."}
+                            {displayGoals()}
                         </div>
                     </div>
                 </div>
