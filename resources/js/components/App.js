@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
 import Axios from "axios";
+import Button from "./Button";
 import { Link } from "react-router-dom";
 
 function App() {
     const [goal, setGoal] = useState("");
     const [allGoals, setAllGoals] = useState([]);
-
+    const [isClicked, setIsClicked] = useState(false);
+    const [text, setText] = useState("Kick");
     useEffect(() => {
         Axios.get("/goal").then(response => {
             console.log(response.data.sortedGoals);
@@ -36,10 +38,11 @@ function App() {
                     </button>
                     <Link
                         to={`/edit/${goal.id}`}
-                        className="btn btn-warning float-right"
+                        className="btn btn-warning float-right btn-space-left-10"
                     >
                         Update
                     </Link>
+                    <Button />
                 </div>
             </div>
         ));
@@ -72,6 +75,7 @@ function App() {
                                     className="form-control"
                                     value={goal}
                                     onChange={handleChange}
+                                    maxLength="50"
                                 />
                                 <div>
                                     <button

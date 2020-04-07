@@ -10894,3 +10894,7 @@ a.text-dark:focus {
   margin-left: 10px;
 }
 
+.btn-size-20 {
+  min-width: 70px;
+}
+
