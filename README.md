@@ -4,7 +4,7 @@
 
 ## GoalKeeper
 
-GoalKeeper is a full stack application that allows users to set their goals for the day and keep track it.
+GoalKeeper is a full stack application that allows users to set their goals for the day and keep a track of them.
 
 The main goal behind the application is to demonstrate working knowledge of PHP with the Laravel framework with CRUD operations.
 
