@@ -22,6 +22,8 @@ Auth::routes();
 Route::get('/fetch/{id}', 'GoalController@fetch');
 Route::put('/edit/{id}', 'GoalController@edit');
 Route::post('/goal/{id}', 'GoalController@update');
+Route::post('/kick/{id}', 'GoalController@kick');
+Route::post('/undo/{id}', 'GoalController@undo');
 Route::delete('/goal/{id}', 'GoalController@destroy');
 Route::get('/goal', 'GoalController@index');
 Route::post('/goal', 'GoalController@store');

@@ -69704,6 +69704,7 @@ function App() {
 
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
     axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("/goal").then(function (response) {
+      console.log(response);
       setAllGoals(response.data.sortedGoals);
     });
   }, []);
@@ -69809,29 +69810,28 @@ function Button(_ref) {
       isClicked = _useState2[0],
       setIsClicked = _useState2[1];
 
-  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])("Kick"),
-      _useState4 = _slicedToArray(_useState3, 2),
-      text = _useState4[0],
-      setText = _useState4[1];
-
   var handleKick = function handleKick() {
     if (isClicked) {
       setIsClicked(false);
-      setText("Kick");
+      axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("/kick/".concat(goal.id)).then(function (response) {
+        return console.log(response);
+      });
     } else {
       setIsClicked(true);
-      setText("Undo");
+      axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("/undo/".concat(goal.id)).then(function (response) {
+        return console.log(response);
+      });
     }
   };
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
     style: {
-      textDecorationLine: isClicked ? "line-through" : ""
+      textDecorationLine: isClicked || goal.completed ? "line-through" : ""
     }
   }, goal.goal), " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
     className: "btn btn-success float-right btn-size-20",
     onClick: handleKick
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, text)));
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, isClicked || goal.completed ? "Undo" : "Kick")));
 }
 
 /* harmony default export */ __webpack_exports__["default"] = (Button);

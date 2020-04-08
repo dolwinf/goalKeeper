@@ -45,7 +45,9 @@ class GoalController extends Controller
             }
             
             public function update(Request $request, $id){
+               
                 $data = $request->all();
+                
                 $goal = Goals::findOrFail($id);
                 $goal->update($data);
                 return response()->json($goal->with('user')->find($goal->id));
@@ -62,5 +64,23 @@ class GoalController extends Controller
                 
                 Goals::findOrFail($id)->delete();
             }
+
+            public function kick($id)
+      {
+          $goal = Goals::findOrFail($id);
+        $goal->completed = false;
+        $goal->update();
+
+        return response()->json($goal);
+      }
+
+      public function undo($id)
+      {
+          $goal = Goals::findOrFail($id);
+        $goal->completed = true;
+        $goal->update();
+
+        return response()->json($goal);
+      }
 
 }

@@ -4,9 +4,8 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateGoalsTable extends Migration
+class AddCompletedBoleanGoalsDefaultFalse extends Migration
 {
-    
     /**
      * Run the migrations.
      *
@@ -14,14 +13,11 @@ class CreateGoalsTable extends Migration
      */
     public function up()
     {
-        Schema::create('goals', function (Blueprint $table) {
-            $table->id();
-            $table->integer('user_id')->unsigned()->index();
-            $table->string('goal');
-           
-            $table->index(['user_id']);
-            $table->timestamps();
+        //
+        Schema::table('goals', function (Blueprint $table) {
+            $table->boolean('completed')->default(false)->change();
         });
+    
     }
 
     /**
@@ -31,6 +27,6 @@ class CreateGoalsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('goals');
+        //
     }
 }

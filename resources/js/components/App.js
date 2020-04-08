@@ -8,6 +8,7 @@ function App() {
 
     useEffect(() => {
         Axios.get("/goal").then(response => {
+            console.log(response);
             setAllGoals(response.data.sortedGoals);
         });
     }, []);

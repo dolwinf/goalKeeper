@@ -3,15 +3,20 @@ import Axios from "axios";
 
 function Button({ goal }) {
     const [isClicked, setIsClicked] = useState(false);
-    const [text, setText] = useState("Kick");
 
     const handleKick = () => {
         if (isClicked) {
             setIsClicked(false);
-            setText("Kick");
+
+            Axios.post(`/kick/${goal.id}`).then(response =>
+                console.log(response)
+            );
         } else {
             setIsClicked(true);
-            setText("Undo");
+
+            Axios.post(`/undo/${goal.id}`).then(response =>
+                console.log(response)
+            );
         }
     };
 
@@ -19,7 +24,8 @@ function Button({ goal }) {
         <div>
             <span
                 style={{
-                    textDecorationLine: isClicked ? "line-through" : ""
+                    textDecorationLine:
+                        isClicked || goal.completed ? "line-through" : ""
                 }}
             >
                 {goal.goal}
@@ -28,7 +34,7 @@ function Button({ goal }) {
                 className="btn btn-success float-right btn-size-20"
                 onClick={handleKick}
             >
-                <div>{text}</div>
+                <div>{isClicked || goal.completed ? "Undo" : "Kick"}</div>
             </button>
         </div>
     );
